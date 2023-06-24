@@ -18,4 +18,5 @@
     <color name="colorPrimary">#BADCEE</color>
     <color name="play_fragment_bars">#282828</color>
     <color name="seekbar_progress">#3bc9fc</color>
+    <color name="backgroundColor">#381848</color>
 </resources>
