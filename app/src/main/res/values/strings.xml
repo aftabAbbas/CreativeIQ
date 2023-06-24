@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">CreativeIQ</string>
+    <string name="you_temp_time" translatable="false">0:00</string>
+    <string name="autoplay">autoplay</string>
+    <string name="comment_no_result">An error has ouccurred</string>
+    <string name="you_search_no_result">No results</string>
 </resources>

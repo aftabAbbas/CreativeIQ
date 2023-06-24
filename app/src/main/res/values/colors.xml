@@ -7,4 +7,15 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="colorPrimaryDark1">#4A8CBC</color>
+    <color name="colorRed">#FF0000</color>
+    <color name="colorPrimaryDark">#87BBDC</color>
+    <color name="selectable">#545454</color>
+    <color name="black_b">#000</color>
+    <color name="play_fragment">#393939</color>
+    <color name="grey">#777777</color>
+    <color name="suggestions">#e5e5e5</color>
+    <color name="colorPrimary">#BADCEE</color>
+    <color name="play_fragment_bars">#282828</color>
+    <color name="seekbar_progress">#3bc9fc</color>
 </resources>
