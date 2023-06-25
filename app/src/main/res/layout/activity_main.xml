@@ -1,566 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+    android:background="@drawable/tab_indicator2"
+    android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/ne_tv_app_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
-        android:text="@string/app_name"
-        android:textSize="32sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/ne_tv_current_song"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="32dp"
-        android:ellipsize="marquee"
-        android:focusable="true"
-        android:focusableInTouchMode="true"
-        android:fontFamily="sans-serif-light"
-        android:gravity="center"
-        android:marqueeRepeatLimit="marquee_forever"
-        android:singleLine="true"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/ne_tv_app_name"
-        app:layout_constraintTop_toBottomOf="@+id/ne_tv_app_name" />
-
-    <TextView
-        android:id="@+id/ne_tv_author_name"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="@+id/ne_tv_current_song"
-        app:layout_constraintStart_toStartOf="@+id/ne_tv_app_name"
-        app:layout_constraintTop_toBottomOf="@+id/ne_tv_current_song" />
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1" />
 
     <soup.neumorphism.NeumorphCardView
         android:id="@+id/neumorphCardView2"
         style="@style/Widget.Neumorph.CardView"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_marginTop="32dp"
-        app:layout_constraintBottom_toTopOf="@+id/constraintLayout3"
-        app:layout_constraintStart_toStartOf="@+id/ne_tv_author_name"
-        app:layout_constraintTop_toBottomOf="@+id/ne_tv_author_name"
-        app:neumorph_shadowElevation="3dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:neumorph_shadowElevation="2dp"
         app:neumorph_shapeType="basin">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center">
+            android:layout_gravity="center"
+            android:padding="5dp"
+            app:cardCornerRadius="25dp">
 
-            <soup.neumorphism.NeumorphImageView
-                android:id="@+id/nu_replay"
-                style="@style/Widget.Neumorph.ImageView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:src="@drawable/replay"
-                android:tint="@color/colorPrimaryDark1"
-                app:layout_constraintEnd_toEndOf="parent"
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tl_main"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/tab_indicator"
+                android:elevation="10dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:neumorph_shadowElevation="2dp"
-                app:neumorph_shapeType="pressed" />
+                app:tabIndicator="@drawable/tab_indicator"
+                app:tabIndicatorAnimationMode="elastic"
+                app:tabIndicatorColor="@color/pink"
+                app:tabIndicatorGravity="stretch"
+                app:tabRippleColor="@null"
+                app:tabSelectedTextColor="@color/white"
+                app:tabTextAppearance="@style/MineCustomTabText"
+                app:tabTextColor="@color/grey">
 
-            <soup.neumorphism.NeumorphImageView
-                android:id="@+id/nu_next"
-                style="@style/Widget.Neumorph.ImageView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:src="@drawable/next"
-                android:tint="@color/colorPrimaryDark1"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/nu_replay"
-                app:neumorph_shadowElevation="2dp"
-                app:neumorph_shapeType="pressed" />
-
-            <soup.neumorphism.NeumorphImageView
-                android:id="@+id/ne_play_pause"
-                style="@style/Widget.Neumorph.ImageView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:src="@drawable/ic_play_arrow"
-                android:tint="@color/colorPrimaryDark1"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/nu_next"
-                app:neumorph_shadowElevation="2dp"
-                app:neumorph_shapeType="pressed" />
-
-            <soup.neumorphism.NeumorphImageView
-                android:id="@+id/nu_previous"
-                style="@style/Widget.Neumorph.ImageView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:src="@drawable/previous"
-                android:tint="@color/colorPrimaryDark1"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/ne_play_pause"
-                app:neumorph_shadowElevation="2dp"
-                app:neumorph_shapeType="pressed" />
-
-            <soup.neumorphism.NeumorphImageView
-                android:id="@+id/neumorphImageView4"
-                style="@style/Widget.Neumorph.ImageView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:src="@drawable/list"
-                android:tint="@color/colorPrimaryDark1"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/nu_previous"
-                app:neumorph_shadowElevation="2dp"
-                app:neumorph_shapeType="pressed" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </soup.neumorphism.NeumorphCardView>
-
-    <soup.neumorphism.NeumorphImageView
-        android:id="@+id/neumorphImageView5"
-        style="@style/Widget.Neumorph.ImageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:src="@drawable/ic_more_vert"
-        android:tint="@color/colorPrimaryDark1"
-        app:layout_constraintBottom_toBottomOf="@+id/ne_tv_app_name"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/ne_tv_app_name"
-        app:neumorph_shadowElevation="2dp"
-        app:neumorph_shapeType="pressed" />
-
-    <soup.neumorphism.NeumorphImageView
-        style="@style/Widget.Neumorph.ImageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="openSearchTab"
-        android:src="@drawable/ic_search"
-        android:tint="@color/colorPrimaryDark1"
-        app:layout_constraintBottom_toBottomOf="@+id/ne_tv_app_name"
-        app:layout_constraintEnd_toStartOf="@+id/neumorphImageView5"
-        app:layout_constraintTop_toTopOf="@+id/ne_tv_app_name"
-        app:neumorph_shadowElevation="2dp"
-        app:neumorph_shapeType="pressed" />
-
-    <RelativeLayout
-        android:id="@+id/relativeLayout1"
-        android:layout_width="450dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/constraintLayout3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ne_tv_author_name">
-
-        <soup.neumorphism.NeumorphCardView
-            android:id="@+id/neumorphCardView4"
-            android:layout_width="350dp"
-            android:layout_height="350dp"
-            android:layout_centerInParent="true"
-            app:neumorph_shadowColorDark="@color/colorPrimaryDark"
-            app:neumorph_shadowColorLight="@color/colorPrimaryDark"
-            app:neumorph_shadowElevation="5dp"
-            app:neumorph_shapeAppearance="@style/CustomShapeAppearance2"
-            app:neumorph_shapeType="flat"
-            app:neumorph_strokeWidth="20dp">
-
-            <soup.neumorphism.NeumorphImageView
-                android:id="@+id/ne_iv_currently_play"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scaleType="centerCrop"
-                android:src="@drawable/artist" />
-        </soup.neumorphism.NeumorphCardView>
-
-        <soup.neumorphism.NeumorphCardView
-            android:id="@+id/neumorphCardView"
-            android:layout_width="450dp"
-            android:layout_height="450dp"
-            android:layout_centerInParent="true"
-            app:neumorph_shadowColorDark="@color/colorPrimaryDark"
-            app:neumorph_shadowColorLight="@color/colorPrimaryDark"
-            app:neumorph_shadowElevation="5dp"
-            app:neumorph_shapeAppearance="@style/CustomShapeAppearance1"
-            app:neumorph_shapeType="pressed"
-            app:neumorph_strokeWidth="20dp">
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:padding="20dp">
-
-                <me.tankery.lib.circularseekbar.CircularSeekBar
-                    android:id="@+id/cv_seekbar_volume"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    app:cs_circle_progress_color="@color/colorRed"
-                    app:cs_circle_stroke_width="2dp"
-                    app:cs_circle_style="butt"
-                    app:cs_disable_progress_glow="true"
-                    app:cs_lock_enabled="true"
-                    app:cs_maintain_equal_circle="true"
-                    app:cs_move_outside_circle="false"
-                    app:cs_pointer_angle="10"
-                    app:cs_pointer_color="@color/colorRed"
-                    app:cs_pointer_halo_color_ontouch="@color/colorPrimary"
-                    app:cs_pointer_halo_width="4dp"
-                    app:cs_start_angle="90" />
-            </RelativeLayout>
-        </soup.neumorphism.NeumorphCardView>
-    </RelativeLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout3"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="70dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <FrameLayout
-            android:id="@+id/you_previous"
-            style="@style/SelectableItemBackground"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="32dp"
-            android:foreground="@drawable/previous"
-            android:visibility="gone"
-            app:layout_constraintEnd_toStartOf="@+id/play_pause_layout"
-            app:layout_constraintTop_toBottomOf="@+id/currently_playing_duration" />
-
-        <FrameLayout
-            android:id="@+id/play_pause_layout"
-            style="@style/SelectableItemBackground"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:layout_marginTop="8dp"
-            android:foreground="@drawable/play"
-            android:visibility="gone"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.501"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/currently_playing_duration" />
-
-        <FrameLayout
-            android:id="@+id/you_next"
-            style="@style/SelectableItemBackground"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="10dp"
-            android:foreground="@drawable/next"
-            android:visibility="gone"
-            app:layout_constraintStart_toEndOf="@+id/play_pause_layout"
-            app:layout_constraintTop_toBottomOf="@+id/currently_playing_duration" />
-
-        <FrameLayout
-            android:id="@+id/you_shuffle"
-            style="@style/SelectableItemBackground"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="12dp"
-            android:layout_marginEnd="8dp"
-            android:foreground="@drawable/shuffle"
-            android:visibility="gone"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/you_next"
-            app:layout_constraintTop_toBottomOf="@+id/currently_playing_duration" />
-
-        <FrameLayout
-            android:id="@+id/replay"
-            style="@style/SelectableItemBackground"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="12dp"
-            android:layout_marginEnd="32dp"
-            android:foreground="@drawable/replay"
-            android:visibility="gone"
-            app:layout_constraintEnd_toStartOf="@+id/you_previous"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/currently_playing_duration" />
-
-        <RelativeLayout
-            android:id="@+id/relativeLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:background="@color/black_b"
-            app:layout_constraintBottom_toTopOf="@+id/currently_playing_duration"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <ImageView
-                android:id="@+id/currently_playing_image"
-                android:layout_width="match_parent"
-                android:layout_height="234dp"
-                android:adjustViewBounds="true"
-                android:scaleType="fitXY"
-                android:visibility="gone"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
-
-            <ProgressBar
-                android:id="@+id/play_loading_bar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:visibility="gone" />
-        </RelativeLayout>
-
-        <SeekBar
-            android:id="@+id/currently_playing_duration"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:maxHeight="3dp"
-            android:progressDrawable="@drawable/progress_drawable"
-            android:theme="@style/SeekbarColor"
-            android:visibility="visible"
-            app:layout_constraintEnd_toStartOf="@+id/duration_time"
-            app:layout_constraintStart_toEndOf="@+id/duration_time_current"
-            app:layout_constraintTop_toBottomOf="@+id/currently_playing_title" />
-
-        <TextView
-            android:id="@+id/currently_playing_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="4dp"
-            android:layout_marginEnd="32dp"
-            android:ellipsize="marquee"
-            android:focusable="true"
-            android:focusableInTouchMode="true"
-            android:fontFamily="sans-serif-light"
-            android:gravity="center"
-            android:marqueeRepeatLimit="marquee_forever"
-            android:singleLine="true"
-            android:textColor="@color/suggestions"
-            android:textSize="15sp"
-            android:textStyle="bold"
-            android:visibility="gone"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/relativeLayout" />
-
-        <TextView
-            android:id="@+id/duration_time_current"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:fontFamily="sans-serif-light"
-            android:text="@string/you_temp_time"
-            android:textSize="13sp"
-            android:textStyle="normal"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/currently_playing_duration" />
-
-        <TextView
-            android:id="@+id/duration_time"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="4dp"
-            android:fontFamily="sans-serif-light"
-            android:text="@string/you_temp_time"
-            android:textSize="13sp"
-            android:textStyle="normal"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/currently_playing_duration" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/play_list_layout"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginTop="10dp"
-        android:background="@color/colorPrimary"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/frameLayout2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-
-                android:layout_width="match_parent"
-                android:layout_height="39dp"
-                android:background="@color/play_fragment_bars"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <FrameLayout
-                    android:id="@+id/volume"
-                    style="@style/SelectableItemBackground"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_gravity="start|center_vertical"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginBottom="8dp"
-                    android:foreground="@drawable/volume_up"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <FrameLayout
-                    android:id="@+id/add_playlist"
-                    style="@style/SelectableItemBackground"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_gravity="center_vertical|start"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginBottom="8dp"
-                    android:foreground="@drawable/add_to_playlist"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/volume"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <FrameLayout
-                    android:id="@+id/alarm"
-                    style="@style/SelectableItemBackground"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_gravity="center_vertical|start"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginBottom="8dp"
-                    android:foreground="@drawable/alarm_add"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/add_playlist"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <FrameLayout
-                    android:id="@+id/suggestions"
-                    style="@style/SelectableItemBackground"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginBottom="8dp"
-                    android:foreground="@drawable/ic_playlist_pressed"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/alarm"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <FrameLayout
-                    android:id="@+id/comments"
-                    style="@style/SelectableItemBackground"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginBottom="8dp"
-                    android:foreground="@drawable/ic_comment"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/suggestions"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/autoplay"
+                <com.google.android.material.tabs.TabItem
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center_vertical|end"
-                    android:layout_marginEnd="8dp"
-                    android:fontFamily="sans-serif-light"
-                    android:gravity="center"
-                    android:text="@string/autoplay"
-                    android:textAlignment="center"
-                    android:textColor="@color/seekbar_progress"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </com.google.android.material.appbar.AppBarLayout>
+                    android:layout_height="wrap_content"
+                    android:text="Home" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/play_suggestion_list"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:background="@color/colorPrimary"
-            android:scrollbarSize="5dp"
-            android:scrollbarThumbVertical="@drawable/scrollbar"
-            android:scrollbars="vertical"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/frameLayout2" />
+                <com.google.android.material.tabs.TabItem
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Playlist" />
 
-        <ProgressBar
-            android:id="@+id/suggestion_loading_bar"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:layout_centerInParent="true"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/play_suggestion_list" />
-
-        <TextView
-            android:id="@+id/comment_no_result"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="@string/comment_no_result"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="@color/white"
-            android:textStyle="normal"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/play_suggestion_list" />
-
-        <TextView
-            android:id="@+id/no_result"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="@string/you_search_no_result"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="@color/white"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/play_suggestion_list" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+                <com.google.android.material.tabs.TabItem
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Help" />
+            </com.google.android.material.tabs.TabLayout>
+        </androidx.cardview.widget.CardView>
+    </soup.neumorphism.NeumorphCardView>
+</LinearLayout>

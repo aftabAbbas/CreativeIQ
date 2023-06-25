@@ -4,4 +4,6 @@
     <string name="autoplay">autoplay</string>
     <string name="comment_no_result">An error has ouccurred</string>
     <string name="you_search_no_result">No results</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
