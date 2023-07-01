@@ -1,14 +1,13 @@
 package com.itzcafe.creativeiq.ui.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.itzcafe.creativeiq.R
+import androidx.fragment.app.Fragment
 import com.itzcafe.creativeiq.adapters.recycler.PlaylistAdapter
-import com.itzcafe.creativeiq.databinding.FragmentHomeBinding
 import com.itzcafe.creativeiq.databinding.FragmentPlaylistBinding
+import com.itzcafe.creativeiq.utils.Functions
 
 class PlaylistFragment : Fragment() {
 
@@ -27,7 +26,7 @@ class PlaylistFragment : Fragment() {
     }
 
     private fun setPlaylistAdapter() {
-        val adapter = PlaylistAdapter(requireContext())
+        val adapter = PlaylistAdapter(requireContext(), Functions.getAllDataFromRaw())
         binding.rvPlaylist.adapter = adapter
     }
 }

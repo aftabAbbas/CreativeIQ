@@ -1,20 +1,19 @@
 package com.itzcafe.creativeiq.adapters.recycler
 
 import android.content.Context
-import android.location.Geocoder
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.google.gson.Gson
 import com.itzcafe.creativeiq.R
 import com.itzcafe.creativeiq.databinding.ItemPlaylistBinding
+import java.lang.reflect.Field
 import java.util.*
 
 @Suppress("all")
 class PlaylistAdapter(
     private var context: Context,
+    private var arrayList: ArrayList<Field>
 ) : RecyclerView.Adapter<PlaylistAdapter.VH>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {
@@ -25,11 +24,13 @@ class PlaylistAdapter(
     }
 
     override fun onBindViewHolder(holder: VH, position: Int) {
-
+        holder.binding.run {
+            playlistTitle.text = arrayList[position].name
+        }
     }
 
     override fun getItemCount(): Int {
-        return 10
+        return arrayList.size
     }
 
     class VH(itemView: View) : RecyclerView.ViewHolder(itemView) {

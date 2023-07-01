@@ -5,16 +5,14 @@ package com.itzcafe.creativeiq.utils
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.ContentResolver
-import android.content.ContentUris
 import android.content.Context
 import android.content.Intent
-import android.content.IntentSender.SendIntentException
 import android.content.pm.PackageInfo
+import android.content.res.Resources
 import android.graphics.Color
+import android.media.AudioManager
 import android.net.Uri
 import android.os.Build
-import android.os.Environment
-import android.provider.DocumentsContract
 import android.provider.MediaStore
 import android.provider.OpenableColumns
 import android.text.Html
@@ -27,20 +25,18 @@ import android.webkit.WebViewClient
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
 import com.google.android.material.snackbar.Snackbar
 import com.google.gson.Gson
 import com.itzcafe.creativeiq.R
 import java.io.File
+import java.lang.reflect.Field
 import java.text.DateFormat
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
 import java.util.regex.Pattern
-import kotlin.math.acos
-import kotlin.math.cos
-import kotlin.math.sin
+
 
 @Suppress("deprecation", "all")
 object Functions {
@@ -310,4 +306,23 @@ object Functions {
         return null
     }
 
+    fun getAllDataFromRaw(): ArrayList<Field> {
+        val musicList: ArrayList<Field> = ArrayList()
+        val fields: Array<Field> = R.raw::class.java.fields
+
+        fields.forEach { field ->
+            musicList.add(field)
+        }
+
+        return musicList
+    }
+
+    fun isMusicPlaying(context: Context): Boolean {
+        val manager = context.getSystemService(Context.AUDIO_SERVICE) as AudioManager
+        if (manager.isMusicActive) {
+            return true
+        }
+
+        return false
+    }
 }
