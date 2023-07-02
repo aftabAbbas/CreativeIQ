@@ -3,66 +3,283 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/tab_indicator2"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-    <androidx.viewpager.widget.ViewPager
-        android:id="@+id/view_pager"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1" />
-
-    <soup.neumorphism.NeumorphCardView
-        android:id="@+id/neumorphCardView2"
-        style="@style/Widget.Neumorph.CardView"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:neumorph_shadowElevation="2dp"
-        app:neumorph_shapeType="basin">
+        android:orientation="horizontal">
 
-        <androidx.cardview.widget.CardView
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:backgroundTint="@color/black"
+            android:src="@drawable/app_logo" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/ne_tv_app_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/app_name"
+                android:textSize="32sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/ne_tv_tagline"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:focusable="true"
+                android:fontFamily="sans-serif-light"
+                android:text="Win with contact and communication - Neuro-Science-Proven"
+                android:textSize="12sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="4dp">
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:padding="5dp"
-            app:cardCornerRadius="25dp">
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            android:weightSum="5">
 
-            <com.google.android.material.tabs.TabLayout
-                android:id="@+id/tl_main"
+            <ImageView
+                android:id="@+id/iv_replay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:foreground="?attr/actionBarItemBackground"
+                android:padding="5dp"
+                android:src="@drawable/replay"
+                app:tint="@color/colorPrimaryDark1" />
+
+            <ImageView
+                android:id="@+id/iv_previous"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:foreground="?attr/actionBarItemBackground"
+                android:padding="5dp"
+                android:src="@drawable/previous"
+                app:tint="@color/colorPrimaryDark1" />
+
+            <ImageView
+                android:id="@+id/iv_play_pause"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:foreground="?attr/actionBarItemBackground"
+                android:padding="5dp"
+                android:src="@drawable/play"
+                app:tint="@color/colorPrimaryDark1" />
+
+            <ImageView
+                android:id="@+id/iv_next"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:foreground="?attr/actionBarItemBackground"
+                android:padding="5dp"
+                android:src="@drawable/next"
+                app:tint="@color/colorPrimaryDark1" />
+
+            <ImageView
+                android:id="@+id/iv_list"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:foreground="?attr/actionBarItemBackground"
+                android:padding="5dp"
+                android:src="@drawable/list"
+                app:tint="@color/colorPrimaryDark1" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp">
+
+        <FrameLayout
+            android:id="@+id/you_previous"
+            style="@style/SelectableItemBackground"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="32dp"
+            android:foreground="@drawable/previous"
+            android:visibility="gone"
+            app:layout_constraintEnd_toStartOf="@+id/play_pause_layout"
+            app:layout_constraintTop_toBottomOf="@+id/sb_playing" />
+
+        <FrameLayout
+            android:id="@+id/play_pause_layout"
+            style="@style/SelectableItemBackground"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginTop="8dp"
+            android:foreground="@drawable/play"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.501"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/sb_playing" />
+
+        <FrameLayout
+            android:id="@+id/you_next"
+            style="@style/SelectableItemBackground"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="10dp"
+            android:foreground="@drawable/next"
+            android:visibility="gone"
+            app:layout_constraintStart_toEndOf="@+id/play_pause_layout"
+            app:layout_constraintTop_toBottomOf="@+id/sb_playing" />
+
+        <FrameLayout
+            android:id="@+id/you_shuffle"
+            style="@style/SelectableItemBackground"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="8dp"
+            android:foreground="@drawable/shuffle"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/you_next"
+            app:layout_constraintTop_toBottomOf="@+id/sb_playing" />
+
+        <FrameLayout
+            android:id="@+id/replay"
+            style="@style/SelectableItemBackground"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="32dp"
+            android:foreground="@drawable/replay"
+            android:visibility="gone"
+            app:layout_constraintEnd_toStartOf="@+id/you_previous"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/sb_playing" />
+
+        <RelativeLayout
+            android:id="@+id/relativeLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:background="@color/black_b"
+            app:layout_constraintBottom_toTopOf="@+id/sb_playing"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/currently_playing_image"
                 android:layout_width="match_parent"
-                android:layout_height="35dp"
-                android:layout_gravity="center_vertical"
-                android:background="@drawable/tab_indicator"
-                android:elevation="10dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:tabIndicator="@drawable/tab_indicator"
-                app:tabIndicatorAnimationMode="elastic"
-                app:tabIndicatorColor="@color/pink"
-                app:tabIndicatorGravity="stretch"
-                app:tabRippleColor="@null"
-                app:tabSelectedTextColor="@color/white"
-                app:tabTextAppearance="@style/MineCustomTabText"
-                app:tabTextColor="@color/grey">
+                android:layout_height="234dp"
+                android:adjustViewBounds="true"
+                android:scaleType="fitXY"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
 
-                <com.google.android.material.tabs.TabItem
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Home" />
+            <ProgressBar
+                android:id="@+id/play_loading_bar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:visibility="gone" />
+        </RelativeLayout>
 
-                <com.google.android.material.tabs.TabItem
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Playlist" />
+        <SeekBar
+            android:id="@+id/sb_playing"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:maxHeight="3dp"
+            android:progressDrawable="@drawable/progress_drawable"
+            android:theme="@style/SeekbarColor"
+            android:visibility="visible"
+            app:layout_constraintEnd_toStartOf="@+id/tv_duration_time"
+            app:layout_constraintStart_toEndOf="@+id/tv_current_time"
+            app:layout_constraintTop_toBottomOf="@+id/currently_playing_title" />
 
-                <com.google.android.material.tabs.TabItem
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Help" />
-            </com.google.android.material.tabs.TabLayout>
-        </androidx.cardview.widget.CardView>
-    </soup.neumorphism.NeumorphCardView>
+        <TextView
+            android:id="@+id/currently_playing_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="32dp"
+            android:ellipsize="marquee"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:fontFamily="sans-serif-light"
+            android:gravity="center"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:singleLine="true"
+            android:textColor="@color/suggestions"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/relativeLayout" />
+
+        <TextView
+            android:id="@+id/tv_current_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:fontFamily="sans-serif-light"
+            android:text="@string/you_temp_time"
+            android:textSize="13sp"
+            android:textStyle="normal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/sb_playing" />
+
+        <TextView
+            android:id="@+id/tv_duration_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="4dp"
+            android:fontFamily="sans-serif-light"
+            android:text="@string/you_temp_time"
+            android:textSize="13sp"
+            android:textStyle="normal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/sb_playing" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_news_feed"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 </LinearLayout>

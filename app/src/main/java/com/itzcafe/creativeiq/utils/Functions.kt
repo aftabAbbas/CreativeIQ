@@ -8,9 +8,9 @@ import android.content.ContentResolver
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageInfo
-import android.content.res.Resources
 import android.graphics.Color
 import android.media.AudioManager
+import android.media.MediaMetadataRetriever
 import android.net.Uri
 import android.os.Build
 import android.provider.MediaStore
@@ -30,12 +30,14 @@ import com.google.android.material.snackbar.Snackbar
 import com.google.gson.Gson
 import com.itzcafe.creativeiq.R
 import java.io.File
+import java.lang.String.format
 import java.lang.reflect.Field
 import java.text.DateFormat
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
 import java.util.regex.Pattern
+import kotlin.time.Duration.Companion.milliseconds
 
 
 @Suppress("deprecation", "all")
@@ -324,5 +326,19 @@ object Functions {
         }
 
         return false
+    }
+
+    fun getDuration(absolutePath: String): String {
+        val retriever = MediaMetadataRetriever()
+        retriever.setDataSource(absolutePath)
+        val rawDuration = retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION)?.toLong() ?: 0L
+        val duration = rawDuration.milliseconds
+        return format("%02d:%02d", duration.inWholeMinutes, duration.inWholeSeconds % 60)
+    }
+
+    fun getMusicDuration(duration: Int): String {
+        val minutes = (duration?.div((1000 * 60)))?.rem(60)
+        val seconds = (duration?.div(1000))?.rem(60)
+        return String.format("%02d:%02d", minutes, seconds)
     }
 }

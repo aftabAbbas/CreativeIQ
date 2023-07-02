@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">CreativeIQ</string>
+    <string name="app_name">Mentor-CIQ(c)</string>
     <string name="you_temp_time" translatable="false">0:00</string>
     <string name="autoplay">autoplay</string>
     <string name="comment_no_result">An error has ouccurred</string>

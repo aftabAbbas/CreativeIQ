@@ -1,4 +1,4 @@
-package com.itzcafe.creativeiq.adapters.recycler
+package com.itzcafe.creativeiq.adapters
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -11,10 +11,9 @@ import java.lang.reflect.Field
 import java.util.*
 
 @Suppress("all")
-class PlaylistAdapter(
-    private var context: Context,
-    private var arrayList: ArrayList<Field>
-) : RecyclerView.Adapter<PlaylistAdapter.VH>() {
+class NewsFeedAdapter(
+    private var context: Context
+) : RecyclerView.Adapter<NewsFeedAdapter.VH>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {
         return VH(
@@ -25,12 +24,12 @@ class PlaylistAdapter(
 
     override fun onBindViewHolder(holder: VH, position: Int) {
         holder.binding.run {
-            playlistTitle.text = arrayList[position].name
+
         }
     }
 
     override fun getItemCount(): Int {
-        return arrayList.size
+        return 10
     }
 
     class VH(itemView: View) : RecyclerView.ViewHolder(itemView) {

@@ -15,14 +15,6 @@
         <item name="android:windowLightStatusBar">true</item>
     </style>
 
-    <style name="CustomShapeAppearance1">
-        <item name="neumorph_cornerFamily">oval</item>
-    </style>
-
-    <style name="CustomShapeAppearance2">
-        <item name="neumorph_cornerFamily">oval</item>
-    </style>
-
     <style name="SelectableItemBackground">
         <item name="android:theme">@style/SelectableItemTheme</item>
         <item name="android:background">?selectableItemBackgroundBorderless</item>
