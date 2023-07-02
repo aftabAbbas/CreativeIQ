@@ -6,7 +6,6 @@ import com.itzcafe.creativeiq.adapters.PlaylistAdapter
 import com.itzcafe.creativeiq.databinding.ActivityMyPlaylistBinding
 import com.itzcafe.creativeiq.utils.Functions
 
-
 class MyPlaylistActivity : AppCompatActivity() {
 
     private var context = this
@@ -21,6 +20,7 @@ class MyPlaylistActivity : AppCompatActivity() {
     }
 
     private fun mainInit() {
+        Functions.hideSystemUI(context)
         setPlaylistAdapter()
         setToolbar()
     }

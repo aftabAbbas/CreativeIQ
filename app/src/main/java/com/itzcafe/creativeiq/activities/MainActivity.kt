@@ -3,11 +3,15 @@ package com.itzcafe.creativeiq.activities
 import android.media.MediaPlayer
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.google.gson.Gson
 import com.itzcafe.creativeiq.R
 import com.itzcafe.creativeiq.adapters.NewsFeedAdapter
 import com.itzcafe.creativeiq.databinding.ActivityMainBinding
+import com.itzcafe.creativeiq.models.Music
 import com.itzcafe.creativeiq.utils.Functions
 import java.lang.reflect.Field
+import java.util.Timer
+import java.util.TimerTask
 
 class MainActivity : AppCompatActivity() {
 
@@ -27,9 +31,27 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun mainInit() {
+        getIntentValues()
+        Functions.hideSystemUI(context)
         fieldList.addAll(Functions.getAllDataFromRaw())
         clickListeners()
         setNewsFeedAdapter()
+    }
+
+    private fun getIntentValues() {
+        val any = Functions.getIntentData(context, Gson(), Music::class.java)
+
+        if (any != null) {
+            val music = any as Music
+            playMusicFromRaw(music.rawId)
+
+            binding.run {
+                tvSongName.text = music.musicTitle
+                tvSongName.isSelected = true
+                ivPlayPause.setImageResource(R.drawable.pause)
+                tvDurationTime.text = Functions.getMusicDuration(mediaPlayer?.duration!!)
+            }
+        }
     }
 
     private fun setNewsFeedAdapter() {
@@ -96,8 +118,26 @@ class MainActivity : AppCompatActivity() {
                 tvSongName.text = field.name
                 tvSongName.isSelected = true
                 tvDurationTime.text = Functions.getMusicDuration(mediaPlayer?.duration!!)
+                sbPlaying.max = mediaPlayer?.duration!!
+                setProgressToSeekbar()
             }
         }
+    }
+
+    private fun setProgressToSeekbar() {
+        val timer = Timer()
+        timer.scheduleAtFixedRate(object : TimerTask() {
+            override fun run() {
+                if (mediaPlayer != null && Functions.isMusicPlaying(context)) {
+                    runOnUiThread {
+                        val currentPosition = mediaPlayer!!.currentPosition
+                        binding.sbPlaying.progress = currentPosition
+                        val formattedDuration = Functions.formatDuration(currentPosition)
+                        binding.tvCurrentTime.text = formattedDuration
+                    }
+                }
+            }
+        }, 0, 100)
     }
 
     private fun playMusicFromRaw(rawId: Int) {

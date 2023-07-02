@@ -228,9 +228,13 @@ object Functions {
         )
     }
 
-    fun getIntentData(context: Context, gson: Gson, nClass: Class<*>?): Any {
+    fun getIntentData(context: Context, gson: Gson, nClass: Class<*>?): Any? {
         val data = (context as Activity).intent.getStringExtra("send_data")
-        return gson.fromJson(data, nClass)
+        return if (data != null) {
+            gson.fromJson(data, nClass)
+        } else {
+            null
+        }
     }
 
     fun isValidEmailAddress(email: String?): Boolean {
@@ -340,5 +344,11 @@ object Functions {
         val minutes = (duration?.div((1000 * 60)))?.rem(60)
         val seconds = (duration?.div(1000))?.rem(60)
         return String.format("%02d:%02d", minutes, seconds)
+    }
+
+    fun formatDuration(duration: Int): String? {
+        val minutes = duration / 1000 / 60
+        val seconds = duration / 1000 % 60
+        return String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds)
     }
 }
