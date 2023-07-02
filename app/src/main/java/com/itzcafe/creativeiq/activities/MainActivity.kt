@@ -2,6 +2,8 @@ package com.itzcafe.creativeiq.activities
 
 import android.media.MediaPlayer
 import android.os.Bundle
+import android.widget.SeekBar
+import android.widget.SeekBar.OnSeekBarChangeListener
 import androidx.appcompat.app.AppCompatActivity
 import com.google.gson.Gson
 import com.itzcafe.creativeiq.R
@@ -12,6 +14,7 @@ import com.itzcafe.creativeiq.utils.Functions
 import java.lang.reflect.Field
 import java.util.Timer
 import java.util.TimerTask
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -105,6 +108,22 @@ class MainActivity : AppCompatActivity() {
             ivList.setOnClickListener {
                 Functions.startActivity(context, MyPlaylistActivity::class.java)
             }
+
+            sbPlaying.setOnSeekBarChangeListener(object : OnSeekBarChangeListener {
+                override fun onProgressChanged(seekBar: SeekBar, progress: Int, fromUser: Boolean) {
+                    if (fromUser && mediaPlayer != null) {
+                        mediaPlayer!!.seekTo(progress)
+                    }
+                }
+
+                override fun onStartTrackingTouch(seekBar: SeekBar) {
+                    mediaPlayer!!.pause()
+                }
+
+                override fun onStopTrackingTouch(seekBar: SeekBar) {
+                    mediaPlayer!!.start()
+                }
+            })
         }
     }
 
@@ -117,9 +136,6 @@ class MainActivity : AppCompatActivity() {
             binding.run {
                 tvSongName.text = field.name
                 tvSongName.isSelected = true
-                tvDurationTime.text = Functions.getMusicDuration(mediaPlayer?.duration!!)
-                sbPlaying.max = mediaPlayer?.duration!!
-                setProgressToSeekbar()
             }
         }
     }
@@ -150,5 +166,11 @@ class MainActivity : AppCompatActivity() {
         }
 
         mediaPlayer?.start()
+
+        binding.run {
+            tvDurationTime.text = Functions.getMusicDuration(mediaPlayer?.duration!!)
+            sbPlaying.max = mediaPlayer?.duration!!
+            setProgressToSeekbar()
+        }
     }
 }

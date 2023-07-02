@@ -10,6 +10,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="35dp"
         android:orientation="horizontal">
 
         <ImageView
@@ -21,6 +22,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
             android:orientation="vertical">
 
             <TextView
@@ -85,7 +87,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:foreground="?attr/actionBarItemBackground"
-                    android:padding="5dp"
+                    android:paddingHorizontal="5dp"
+                    android:paddingVertical="8dp"
                     android:src="@drawable/replay"
                     app:tint="@color/colorPrimaryDark1" />
 
@@ -96,7 +99,8 @@
                     android:layout_gravity="center"
                     android:layout_weight="1"
                     android:foreground="?attr/actionBarItemBackground"
-                    android:padding="5dp"
+                    android:paddingHorizontal="5dp"
+                    android:paddingVertical="8dp"
                     android:src="@drawable/skip_previous"
                     app:tint="@color/colorPrimaryDark1" />
 
@@ -118,7 +122,8 @@
                     android:layout_gravity="center"
                     android:layout_weight="1"
                     android:foreground="?attr/actionBarItemBackground"
-                    android:padding="5dp"
+                    android:paddingHorizontal="5dp"
+                    android:paddingVertical="8dp"
                     android:src="@drawable/skip_next"
                     app:tint="@color/colorPrimaryDark1" />
 
@@ -129,7 +134,8 @@
                     android:layout_gravity="center"
                     android:layout_weight="1"
                     android:foreground="?attr/actionBarItemBackground"
-                    android:padding="5dp"
+                    android:paddingHorizontal="5dp"
+                    android:paddingVertical="8dp"
                     android:src="@drawable/list"
                     app:tint="@color/colorPrimaryDark1" />
             </LinearLayout>
