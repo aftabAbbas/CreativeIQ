@@ -43,7 +43,6 @@ class MainActivity : AppCompatActivity() {
                 if (!isMusicPaused) {
                     if (!Functions.isMusicPlaying(context)) {
                         playMusic()
-                        tvDurationTime.text = Functions.getMusicDuration(mediaPlayer?.duration!!)
                         ivPlayPause.setImageResource(R.drawable.pause)
 
                     } else {
@@ -80,6 +79,10 @@ class MainActivity : AppCompatActivity() {
                     playMusic()
                 }
             }
+
+            ivList.setOnClickListener {
+                Functions.startActivity(context, MyPlaylistActivity::class.java)
+            }
         }
     }
 
@@ -88,6 +91,12 @@ class MainActivity : AppCompatActivity() {
             val field = Functions.getAllDataFromRaw()[currentIndex]
             val rawId = field.getInt(null)
             playMusicFromRaw(rawId)
+
+            binding.run {
+                tvSongName.text = field.name
+                tvSongName.isSelected = true
+                tvDurationTime.text = Functions.getMusicDuration(mediaPlayer?.duration!!)
+            }
         }
     }
 
