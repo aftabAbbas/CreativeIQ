@@ -89,7 +89,7 @@
                     android:foreground="?attr/actionBarItemBackground"
                     android:paddingHorizontal="5dp"
                     android:paddingVertical="8dp"
-                    android:src="@drawable/replay"
+                    android:src="@drawable/loop"
                     app:tint="@color/colorPrimaryDark1" />
 
                 <ImageView

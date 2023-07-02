@@ -15,7 +15,6 @@ import java.lang.reflect.Field
 import java.util.Timer
 import java.util.TimerTask
 
-
 class MainActivity : AppCompatActivity() {
 
     private var context = this
@@ -24,6 +23,8 @@ class MainActivity : AppCompatActivity() {
     private var mediaPlayer: MediaPlayer? = null
     private var fieldList: ArrayList<Field> = ArrayList()
     private var isMusicPaused = false
+    private var isMusicEnd = false
+    private var isPlayingSingleMusic = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -68,7 +69,6 @@ class MainActivity : AppCompatActivity() {
                 if (!isMusicPaused) {
                     if (!Functions.isMusicPlaying(context)) {
                         playMusic()
-                        ivPlayPause.setImageResource(R.drawable.pause)
 
                     } else {
                         ivPlayPause.setImageResource(R.drawable.play)
@@ -77,9 +77,13 @@ class MainActivity : AppCompatActivity() {
                     }
 
                 } else {
-                    mediaPlayer?.start()
-                    ivPlayPause.setImageResource(R.drawable.pause)
-                    isMusicPaused = false
+                    if (!isMusicEnd) {
+                        mediaPlayer?.start()
+                        ivPlayPause.setImageResource(R.drawable.pause)
+                        isMusicPaused = false
+                    } else {
+                        playMusic()
+                    }
                 }
             }
 
@@ -124,6 +128,16 @@ class MainActivity : AppCompatActivity() {
                     mediaPlayer!!.start()
                 }
             })
+
+            ivReplay.setOnClickListener {
+                if (!isPlayingSingleMusic) {
+                    isPlayingSingleMusic = true
+                    ivReplay.setImageResource(R.drawable.single_music)
+                } else {
+                    isPlayingSingleMusic = false
+                    ivReplay.setImageResource(R.drawable.loop)
+                }
+            }
         }
     }
 
@@ -136,6 +150,7 @@ class MainActivity : AppCompatActivity() {
             binding.run {
                 tvSongName.text = field.name
                 tvSongName.isSelected = true
+                ivPlayPause.setImageResource(R.drawable.pause)
             }
         }
     }
@@ -162,7 +177,14 @@ class MainActivity : AppCompatActivity() {
 
         mediaPlayer = MediaPlayer.create(context, rawId)
         mediaPlayer?.setOnCompletionListener {
-            playMusic()
+            if (!isPlayingSingleMusic) {
+                mediaPlayer!!.stop()
+                binding.ivPlayPause.setImageResource(R.drawable.play)
+                isMusicPaused = true
+                isMusicEnd = true
+            } else {
+                playMusic()
+            }
         }
 
         mediaPlayer?.start()
