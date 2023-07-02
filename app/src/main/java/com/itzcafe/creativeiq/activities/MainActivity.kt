@@ -2,15 +2,12 @@ package com.itzcafe.creativeiq.activities
 
 import android.media.MediaPlayer
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.itzcafe.creativeiq.R
 import com.itzcafe.creativeiq.adapters.NewsFeedAdapter
 import com.itzcafe.creativeiq.databinding.ActivityMainBinding
 import com.itzcafe.creativeiq.utils.Functions
 import java.lang.reflect.Field
-import java.util.Timer
-import java.util.TimerTask
 
 class MainActivity : AppCompatActivity() {
 
@@ -19,6 +16,7 @@ class MainActivity : AppCompatActivity() {
     private var currentIndex = 0
     private var mediaPlayer: MediaPlayer? = null
     private var fieldList: ArrayList<Field> = ArrayList()
+    private var isMusicPaused = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,14 +40,22 @@ class MainActivity : AppCompatActivity() {
     private fun clickListeners() {
         binding.run {
             ivPlayPause.setOnClickListener {
-                if (!Functions.isMusicPlaying(context)) {
-                    playMusic()
-                    tvDurationTime.text = Functions.getMusicDuration(mediaPlayer?.duration!!)
-                    ivPlayPause.setImageResource(R.drawable.pause)
+                if (!isMusicPaused) {
+                    if (!Functions.isMusicPlaying(context)) {
+                        playMusic()
+                        tvDurationTime.text = Functions.getMusicDuration(mediaPlayer?.duration!!)
+                        ivPlayPause.setImageResource(R.drawable.pause)
+
+                    } else {
+                        ivPlayPause.setImageResource(R.drawable.play)
+                        mediaPlayer?.pause()
+                        isMusicPaused = true
+                    }
 
                 } else {
-                    ivPlayPause.setImageResource(R.drawable.play)
-                    mediaPlayer?.pause()
+                    mediaPlayer?.start()
+                    ivPlayPause.setImageResource(R.drawable.pause)
+                    isMusicPaused = false
                 }
             }
 
