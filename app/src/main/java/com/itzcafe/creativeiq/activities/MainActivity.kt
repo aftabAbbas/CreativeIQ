@@ -20,11 +20,13 @@ class MainActivity : AppCompatActivity() {
     private var context = this
     private lateinit var binding: ActivityMainBinding
     private var currentIndex = 0
-    private var mediaPlayer: MediaPlayer? = null
     private var fieldList: ArrayList<Field> = ArrayList()
     private var isMusicPaused = false
     private var isMusicEnd = false
     private var isPlayingSingleMusic = false
+    companion object {
+        var mediaPlayer: MediaPlayer? = null
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,6 +37,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun mainInit() {
+        Functions.disableDarkMode()
         getIntentValues()
         Functions.hideSystemUI(context)
         fieldList.addAll(Functions.getAllDataFromRaw())

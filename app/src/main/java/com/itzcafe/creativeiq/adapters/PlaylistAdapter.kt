@@ -36,12 +36,19 @@ class PlaylistAdapter(
         holder.itemView.setOnClickListener {
             val rawId = arrayList[holder.adapterPosition].getInt(null)
             val music = Music(rawId, arrayList[holder.adapterPosition].name)
+            stopThePreviousMusic()
 
             Functions.startActivityWithFlagsAndData(
                 context, MainActivity::class.java, Gson(), music
             )
             (context as Activity).overridePendingTransition(0, 0)
         }
+    }
+
+    private fun stopThePreviousMusic() {
+        MainActivity.mediaPlayer?.stop()
+        MainActivity.mediaPlayer?.reset()
+        MainActivity.mediaPlayer = null
     }
 
     override fun getItemCount(): Int {
