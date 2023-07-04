@@ -11,6 +11,7 @@ import com.itzcafe.creativeiq.adapters.NewsFeedAdapter
 import com.itzcafe.creativeiq.databinding.ActivityMainBinding
 import com.itzcafe.creativeiq.models.Music
 import com.itzcafe.creativeiq.utils.Functions
+import com.itzcafe.creativeiq.utils.SharedPref
 import java.lang.reflect.Field
 import java.util.Timer
 import java.util.TimerTask
@@ -24,6 +25,8 @@ class MainActivity : AppCompatActivity() {
     private var isMusicPaused = false
     private var isMusicEnd = false
     private var isPlayingSingleMusic = false
+    private lateinit var sp: SharedPref
+
     companion object {
         var mediaPlayer: MediaPlayer? = null
     }
@@ -37,6 +40,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun mainInit() {
+        sp = SharedPref(context)
         Functions.disableDarkMode()
         getIntentValues()
         Functions.hideSystemUI(context)
@@ -50,6 +54,7 @@ class MainActivity : AppCompatActivity() {
 
         if (any != null) {
             val music = any as Music
+            currentIndex = music.songIndex
             playMusicFromRaw(music.rawId)
 
             binding.run {
@@ -179,6 +184,7 @@ class MainActivity : AppCompatActivity() {
     private fun playMusicFromRaw(rawId: Int) {
         mediaPlayer?.release()
         mediaPlayer = null
+        sp.save("currentlyPlayingSong", currentIndex)
 
         mediaPlayer = MediaPlayer.create(context, rawId)
         mediaPlayer?.setOnCompletionListener {
