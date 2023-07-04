@@ -145,6 +145,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun playMusic() {
+        isMusicPaused = false
+
         if (currentIndex < fieldList.size) {
             val field = Functions.getAllDataFromRaw()[currentIndex]
             val rawId = field.getInt(null)
