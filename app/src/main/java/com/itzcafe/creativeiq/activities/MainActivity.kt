@@ -1,14 +1,21 @@
 package com.itzcafe.creativeiq.activities
 
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.media.MediaPlayer
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.widget.SeekBar
 import android.widget.SeekBar.OnSeekBarChangeListener
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.gson.Gson
 import com.itzcafe.creativeiq.R
 import com.itzcafe.creativeiq.adapters.NewsFeedAdapter
+import com.itzcafe.creativeiq.adapters.PlaylistAdapter
 import com.itzcafe.creativeiq.databinding.ActivityMainBinding
+import com.itzcafe.creativeiq.databinding.BottomSheetBinding
+import com.itzcafe.creativeiq.interfaces.GetMusic
 import com.itzcafe.creativeiq.models.Music
 import com.itzcafe.creativeiq.utils.Functions
 import com.itzcafe.creativeiq.utils.SharedPref
@@ -16,7 +23,7 @@ import java.lang.reflect.Field
 import java.util.Timer
 import java.util.TimerTask
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), GetMusic {
 
     private var context = this
     private lateinit var binding: ActivityMainBinding
@@ -26,6 +33,7 @@ class MainActivity : AppCompatActivity() {
     private var isMusicEnd = false
     private var isPlayingSingleMusic = false
     private lateinit var sp: SharedPref
+    private lateinit var dialog: BottomSheetDialog
 
     companion object {
         var mediaPlayer: MediaPlayer? = null
@@ -42,28 +50,10 @@ class MainActivity : AppCompatActivity() {
     private fun mainInit() {
         sp = SharedPref(context)
         Functions.disableDarkMode()
-        getIntentValues()
-        Functions.hideSystemUI(context)
+        Functions.hideStatusBar(context)
         fieldList.addAll(Functions.getAllDataFromRaw())
         clickListeners()
         setNewsFeedAdapter()
-    }
-
-    private fun getIntentValues() {
-        val any = Functions.getIntentData(context, Gson(), Music::class.java)
-
-        if (any != null) {
-            val music = any as Music
-            currentIndex = music.songIndex
-            playMusicFromRaw(music.rawId)
-
-            binding.run {
-                tvSongName.text = music.musicTitle
-                tvSongName.isSelected = true
-                ivPlayPause.setImageResource(R.drawable.pause)
-                tvDurationTime.text = Functions.getMusicDuration(mediaPlayer?.duration!!)
-            }
-        }
     }
 
     private fun setNewsFeedAdapter() {
@@ -118,7 +108,7 @@ class MainActivity : AppCompatActivity() {
             }
 
             ivList.setOnClickListener {
-                Functions.startActivity(context, MyPlaylistActivity::class.java)
+                showBottomSheet()
             }
 
             sbPlaying.setOnSeekBarChangeListener(object : OnSeekBarChangeListener {
@@ -205,5 +195,34 @@ class MainActivity : AppCompatActivity() {
             sbPlaying.max = mediaPlayer?.duration!!
             setProgressToSeekbar()
         }
+    }
+
+    private fun showBottomSheet() {
+        dialog = BottomSheetDialog(context, R.style.customBottomSheetStyle)
+        val bottomSheetBinding = BottomSheetBinding.inflate(LayoutInflater.from(context))
+        dialog.setContentView(bottomSheetBinding.root)
+        dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialog.setCanceledOnTouchOutside(true)
+        dialog.show()
+        setPlaylistAdapter(bottomSheetBinding)
+    }
+
+    private fun setPlaylistAdapter(bottomSheetBinding: BottomSheetBinding) {
+        val adapter = PlaylistAdapter(context, Functions.getAllDataFromRaw(), this)
+        bottomSheetBinding.rvPlaylist.adapter = adapter
+    }
+
+    override fun getMusic(music: Music) {
+        currentIndex = music.songIndex
+        playMusicFromRaw(music.rawId)
+
+        binding.run {
+            tvSongName.text = music.musicTitle
+            tvSongName.isSelected = true
+            ivPlayPause.setImageResource(R.drawable.pause)
+            tvDurationTime.text = Functions.getMusicDuration(mediaPlayer?.duration!!)
+        }
+
+        dialog.dismiss()
     }
 }

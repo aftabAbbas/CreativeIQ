@@ -1,16 +1,14 @@
 package com.itzcafe.creativeiq.adapters
 
-import android.app.Activity
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
-import com.google.gson.Gson
 import com.itzcafe.creativeiq.R
 import com.itzcafe.creativeiq.activities.MainActivity
 import com.itzcafe.creativeiq.databinding.ItemPlaylistBinding
+import com.itzcafe.creativeiq.interfaces.GetMusic
 import com.itzcafe.creativeiq.models.Music
 import com.itzcafe.creativeiq.utils.Functions
 import com.itzcafe.creativeiq.utils.SharedPref
@@ -20,7 +18,8 @@ import java.util.*
 @Suppress("all")
 class PlaylistAdapter(
     private var context: Context,
-    private var arrayList: ArrayList<Field>
+    private var arrayList: ArrayList<Field>,
+    private var getMusic: GetMusic
 ) : RecyclerView.Adapter<PlaylistAdapter.VH>() {
 
     private lateinit var sp: SharedPref
@@ -55,11 +54,7 @@ class PlaylistAdapter(
             val music = Music(rawId, arrayList[holder.adapterPosition].name, holder.adapterPosition)
             stopThePreviousMusic()
             sp.save("currentlyPlayingSong", holder.adapterPosition)
-
-            Functions.startActivityWithFlagsAndData(
-                context, MainActivity::class.java, Gson(), music
-            )
-            (context as Activity).overridePendingTransition(0, 0)
+            getMusic.getMusic(music)
         }
     }
 
