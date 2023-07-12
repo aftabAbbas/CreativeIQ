@@ -9,7 +9,6 @@ import android.widget.SeekBar
 import android.widget.SeekBar.OnSeekBarChangeListener
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.bottomsheet.BottomSheetDialog
-import com.google.gson.Gson
 import com.itzcafe.creativeiq.R
 import com.itzcafe.creativeiq.adapters.NewsFeedAdapter
 import com.itzcafe.creativeiq.adapters.PlaylistAdapter
@@ -135,6 +134,10 @@ class MainActivity : AppCompatActivity(), GetMusic {
                     isPlayingSingleMusic = false
                     ivReplay.setImageResource(R.drawable.loop)
                 }
+            }
+
+            ivInfo.setOnClickListener {
+                Functions.startActivity(context, HelpActivity::class.java)
             }
         }
     }

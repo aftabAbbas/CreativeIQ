@@ -164,6 +164,18 @@
                             android:paddingVertical="8dp"
                             android:src="@drawable/list"
                             app:tint="@color/colorPrimaryDark1" />
+
+                        <ImageView
+                            android:id="@+id/iv_info"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:foreground="?attr/actionBarItemBackground"
+                            android:paddingHorizontal="5dp"
+                            android:paddingVertical="8dp"
+                            android:src="@drawable/info"
+                            app:tint="@color/colorPrimaryDark1" />
                     </LinearLayout>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
