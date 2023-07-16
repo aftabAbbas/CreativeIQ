@@ -6,8 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.itzcafe.creativeiq.R
-import com.itzcafe.creativeiq.activities.MainActivity
 import com.itzcafe.creativeiq.databinding.ItemPlaylistBinding
+import com.itzcafe.creativeiq.fragments.MusicFragment
 import com.itzcafe.creativeiq.interfaces.GetMusic
 import com.itzcafe.creativeiq.models.Music
 import com.itzcafe.creativeiq.utils.Functions
@@ -59,9 +59,9 @@ class PlaylistAdapter(
     }
 
     private fun stopThePreviousMusic() {
-        MainActivity.mediaPlayer?.stop()
-        MainActivity.mediaPlayer?.reset()
-        MainActivity.mediaPlayer = null
+        MusicFragment.mediaPlayer?.stop()
+        MusicFragment.mediaPlayer?.reset()
+        MusicFragment.mediaPlayer = null
     }
 
     override fun getItemCount(): Int {
