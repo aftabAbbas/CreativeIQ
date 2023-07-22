@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/bg_gradient"
     android:orientation="vertical"
     tools:context=".fragments.MusicFragment">
@@ -20,11 +20,11 @@
             android:orientation="vertical">
 
             <androidx.cardview.widget.CardView
-                app:cardCornerRadius="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="250dp"
                 android:layout_marginHorizontal="20dp"
-                android:layout_marginTop="16dp">
+                android:layout_marginTop="16dp"
+                app:cardCornerRadius="10dp">
 
                 <ImageView
                     android:id="@+id/iv_song_img"
@@ -34,11 +34,11 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-                app:cardCornerRadius="10dp"
-                app:cardElevation="4dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="20dp">
+                android:layout_margin="20dp"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="4dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -70,18 +70,17 @@
 
                         <ImageView
                             android:id="@+id/iv_replay"
-                            app:tint="@color/colorPrimaryDark1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:foreground="?attr/actionBarItemBackground"
                             android:paddingHorizontal="5dp"
                             android:paddingVertical="8dp"
-                            android:src="@drawable/loop" />
+                            android:src="@drawable/loop"
+                            app:tint="@color/colorPrimaryDark1" />
 
                         <ImageView
                             android:id="@+id/iv_previous"
-                            app:tint="@color/colorPrimaryDark1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -89,22 +88,22 @@
                             android:foreground="?attr/actionBarItemBackground"
                             android:paddingHorizontal="5dp"
                             android:paddingVertical="8dp"
-                            android:src="@drawable/skip_previous" />
+                            android:src="@drawable/skip_previous"
+                            app:tint="@color/colorPrimaryDark1" />
 
                         <ImageView
                             android:id="@+id/iv_play_pause"
-                            app:tint="@color/colorPrimaryDark1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_weight="1"
                             android:foreground="?attr/actionBarItemBackground"
                             android:padding="5dp"
-                            android:src="@drawable/play" />
+                            android:src="@drawable/play"
+                            app:tint="@color/colorPrimaryDark1" />
 
                         <ImageView
                             android:id="@+id/iv_next"
-                            app:tint="@color/colorPrimaryDark1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -112,11 +111,11 @@
                             android:foreground="?attr/actionBarItemBackground"
                             android:paddingHorizontal="5dp"
                             android:paddingVertical="8dp"
-                            android:src="@drawable/skip_next" />
+                            android:src="@drawable/skip_next"
+                            app:tint="@color/colorPrimaryDark1" />
 
                         <ImageView
                             android:id="@+id/iv_list"
-                            app:tint="@color/colorPrimaryDark1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -124,11 +123,12 @@
                             android:foreground="?attr/actionBarItemBackground"
                             android:paddingHorizontal="5dp"
                             android:paddingVertical="8dp"
-                            android:src="@drawable/list" />
+                            android:src="@drawable/list"
+                            android:visibility="invisible"
+                            app:tint="@color/colorPrimaryDark1" />
 
                         <ImageView
                             android:id="@+id/iv_info"
-                            app:tint="@color/colorPrimaryDark1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -136,7 +136,9 @@
                             android:foreground="?attr/actionBarItemBackground"
                             android:paddingHorizontal="5dp"
                             android:paddingVertical="8dp"
-                            android:src="@drawable/info" />
+                            android:src="@drawable/info"
+                            android:visibility="gone"
+                            app:tint="@color/colorPrimaryDark1" />
                     </LinearLayout>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -161,27 +163,27 @@
 
                 <TextView
                     android:id="@+id/tv_current_time"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/sb_playing"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="4dp"
                     android:fontFamily="sans-serif-light"
                     android:text="@string/you_temp_time"
                     android:textSize="13sp"
-                    android:textStyle="normal" />
+                    android:textStyle="normal"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/sb_playing" />
 
                 <TextView
                     android:id="@+id/tv_duration_time"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/sb_playing"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="4dp"
                     android:fontFamily="sans-serif-light"
                     android:text="@string/you_temp_time"
                     android:textSize="13sp"
-                    android:textStyle="normal" />
+                    android:textStyle="normal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/sb_playing" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <TextView
@@ -190,17 +192,17 @@
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginTop="10dp"
                 android:fontFamily="sans-serif-light"
-                android:text="News Feed"
+                android:text="Music"
                 android:textColor="@color/black"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_news_feed"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                android:id="@+id/rv_playlist"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp" />
+                android:layout_height="match_parent"
+                android:layout_marginTop="16dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 </LinearLayout>

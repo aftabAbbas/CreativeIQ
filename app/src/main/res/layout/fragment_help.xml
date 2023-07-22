@@ -5,10 +5,105 @@
     android:layout_height="match_parent"
     tools:context=".fragments.HelpFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
+        <FrameLayout
+            android:id="@+id/ll_noti_setting"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:foreground="?selectableItemBackground">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|start"
+                android:layout_marginStart="32dp"
+                android:text="Help"
+                android:textColor="@color/black"
+                android:textFontWeight="600"
+                android:textSize="15sp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|center"
+                android:layout_marginEnd="24dp"
+                android:src="@drawable/ic_arrow_right" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/ll_change_pwd"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:foreground="?selectableItemBackground">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|start"
+                android:layout_marginStart="32dp"
+                android:text="Terms and Conditions"
+                android:textColor="@color/black"
+                android:textFontWeight="600"
+                android:textSize="15sp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|center"
+                android:layout_marginEnd="24dp"
+                android:src="@drawable/ic_arrow_right" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/ll_terms"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:foreground="?selectableItemBackground">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|start"
+                android:layout_marginStart="32dp"
+                android:text="Term of Use"
+                android:textColor="@color/black"
+                android:textFontWeight="600"
+                android:textSize="15sp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|center"
+                android:layout_marginEnd="24dp"
+                android:src="@drawable/ic_arrow_right" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/ll_about"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:foreground="?selectableItemBackground">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|start"
+                android:layout_marginStart="32dp"
+                android:text="Product Overview"
+                android:textColor="@color/black"
+                android:textFontWeight="600"
+                android:textSize="15sp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|center"
+                android:layout_marginEnd="24dp"
+                android:src="@drawable/ic_arrow_right" />
+        </FrameLayout>
+    </LinearLayout>
 </FrameLayout>

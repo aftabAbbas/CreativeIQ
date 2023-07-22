@@ -1,8 +1,7 @@
 package com.itzcafe.creativeiq.activities
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.itzcafe.creativeiq.R
+import androidx.appcompat.app.AppCompatActivity
 import com.itzcafe.creativeiq.databinding.ActivityHelpBinding
 
 class HelpActivity : AppCompatActivity() {

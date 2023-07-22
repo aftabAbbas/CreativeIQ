@@ -53,45 +53,15 @@
         android:layout_height="match_parent"
         android:layout_weight="1" />
 
-    <androidx.cardview.widget.CardView
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/bottom_navigation_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_margin="16dp"
-        android:padding="5dp"
-        app:cardCornerRadius="25dp">
-
-        <com.google.android.material.tabs.TabLayout
-            android:id="@+id/tl_main"
-            android:layout_width="match_parent"
-            android:layout_height="35dp"
-            android:layout_gravity="center_vertical"
-            android:elevation="10dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:tabIndicator="@drawable/tab_indicator"
-            app:tabIndicatorAnimationMode="elastic"
-            app:tabIndicatorColor="@color/pink"
-            app:tabIndicatorGravity="stretch"
-            app:tabRippleColor="@null"
-            app:tabSelectedTextColor="@color/white"
-            app:tabTextAppearance="@style/MineCustomTabText"
-            app:tabTextColor="@color/grey">
-
-            <com.google.android.material.tabs.TabItem
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Home" />
-
-            <com.google.android.material.tabs.TabItem
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Playlist" />
-
-            <com.google.android.material.tabs.TabItem
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Help" />
-        </com.google.android.material.tabs.TabLayout>
-    </androidx.cardview.widget.CardView>
+        app:itemIconSize="24dp"
+        app:itemIconTint="@drawable/selected_tab_color"
+        app:itemTextColor="@drawable/selected_tab_color"
+        app:labelVisibilityMode="labeled"
+        app:menu="@menu/bottom_navigation_menu" />
 </LinearLayout>

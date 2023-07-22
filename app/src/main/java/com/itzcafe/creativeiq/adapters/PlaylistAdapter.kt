@@ -23,6 +23,7 @@ class PlaylistAdapter(
 ) : RecyclerView.Adapter<PlaylistAdapter.VH>() {
 
     private lateinit var sp: SharedPref
+    private var selectedItemIndex = -1
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {
         return VH(
@@ -38,7 +39,7 @@ class PlaylistAdapter(
             tvTitle.text = arrayList[position].name
 
             if (Functions.isMusicPlaying(context)) {
-                if (sp["currentlyPlayingSong"] == holder.adapterPosition) {
+                if (selectedItemIndex == holder.adapterPosition) {
                     animationView.visibility = View.VISIBLE
                 } else {
                     animationView.visibility = View.GONE
@@ -50,11 +51,12 @@ class PlaylistAdapter(
         }
 
         holder.itemView.setOnClickListener {
+            selectedItemIndex = holder.adapterPosition
             val rawId = arrayList[holder.adapterPosition].getInt(null)
             val music = Music(rawId, arrayList[holder.adapterPosition].name, holder.adapterPosition)
             stopThePreviousMusic()
-            sp.save("currentlyPlayingSong", holder.adapterPosition)
             getMusic.getMusic(music)
+            notifyDataSetChanged()
         }
     }
 

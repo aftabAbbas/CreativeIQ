@@ -1,7 +1,5 @@
 package com.itzcafe.creativeiq.fragments
 
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.media.MediaPlayer
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -12,9 +10,7 @@ import androidx.fragment.app.Fragment
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.itzcafe.creativeiq.R
 import com.itzcafe.creativeiq.activities.HelpActivity
-import com.itzcafe.creativeiq.adapters.NewsFeedAdapter
 import com.itzcafe.creativeiq.adapters.PlaylistAdapter
-import com.itzcafe.creativeiq.databinding.BottomSheetBinding
 import com.itzcafe.creativeiq.databinding.FragmentMusicBinding
 import com.itzcafe.creativeiq.interfaces.GetMusic
 import com.itzcafe.creativeiq.models.Music
@@ -51,12 +47,7 @@ class MusicFragment : Fragment(), GetMusic {
         sp = SharedPref(requireContext())
         fieldList.addAll(Functions.getAllDataFromRaw())
         clickListeners()
-        setNewsFeedAdapter()
-    }
-
-    private fun setNewsFeedAdapter() {
-        val adapter = NewsFeedAdapter(requireContext())
-        binding.rvNewsFeed.adapter = adapter
+        setPlaylistAdapter()
     }
 
     private fun clickListeners() {
@@ -105,9 +96,9 @@ class MusicFragment : Fragment(), GetMusic {
                 }
             }
 
-            ivList.setOnClickListener {
+            /*ivList.setOnClickListener {
                 showBottomSheet()
-            }
+            }*/
 
             sbPlaying.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
                 override fun onProgressChanged(seekBar: SeekBar, progress: Int, fromUser: Boolean) {
@@ -199,19 +190,19 @@ class MusicFragment : Fragment(), GetMusic {
         }
     }
 
-    private fun showBottomSheet() {
-        dialog = BottomSheetDialog(requireContext(), R.style.customBottomSheetStyle)
-        val bottomSheetBinding = BottomSheetBinding.inflate(LayoutInflater.from(requireContext()))
-        dialog.setContentView(bottomSheetBinding.root)
-        dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        dialog.setCanceledOnTouchOutside(true)
-        dialog.show()
-        setPlaylistAdapter(bottomSheetBinding)
-    }
+    /* private fun showBottomSheet() {
+         dialog = BottomSheetDialog(requireContext(), R.style.customBottomSheetStyle)
+         val bottomSheetBinding = BottomSheetBinding.inflate(LayoutInflater.from(requireContext()))
+         dialog.setContentView(bottomSheetBinding.root)
+         dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+         dialog.setCanceledOnTouchOutside(true)
+         dialog.show()
+         setPlaylistAdapter(bottomSheetBinding)
+     }*/
 
-    private fun setPlaylistAdapter(bottomSheetBinding: BottomSheetBinding) {
+    private fun setPlaylistAdapter() {
         val adapter = PlaylistAdapter(requireContext(), Functions.getAllDataFromRaw(), this)
-        bottomSheetBinding.rvPlaylist.adapter = adapter
+        binding.rvPlaylist.adapter = adapter
     }
 
     override fun getMusic(music: Music) {
@@ -225,6 +216,6 @@ class MusicFragment : Fragment(), GetMusic {
             tvDurationTime.text = Functions.getMusicDuration(mediaPlayer?.duration!!)
         }
 
-        dialog.dismiss()
+        //dialog.dismiss()
     }
 }
